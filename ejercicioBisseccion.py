@@ -52,7 +52,9 @@ def graficarMetodoBiseccion(funcion, xn, xp, objetivo):
     resultados_biseccion = metodoBiseccion(funcion, xn, xp, objetivo)
 
     plt.plot(x_valores, f_valores, label='f(x) = x^4 + 3*x^3 - x^2 - 5*x - 2')
-    plt.title('Método de la Bisección con Aproximaciones y Prueba de Convergencia')
+    plt.axhline(0, color='black',linewidth=3)
+    plt.axvline(0, color='black',linewidth=3)
+    plt.title('Método de la Bisección')
     plt.xlabel('Eje X')
     plt.ylabel('Eje Y')
     plt.legend()
