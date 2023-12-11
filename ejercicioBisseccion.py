@@ -14,15 +14,16 @@ def metodoBiseccion(funcion, xn, xp, objetivo):
     tabla = pd.DataFrame(columns=["Iteración", "Xn", "Xp", "Xe", "f(Xe)", "Prueba de convergencia"])
     
     while True:
+        #Formula
         xe = xn + ((xp - xn) / 2)
 
         try:
             fx_valor = funcion(xe)
         except (ValueError, OverflowError):
             break
-
+         #Convergencia   
         pruebaConvergencia = abs((xe - xn) / xe) if xe != 0 else 0
-        
+        #Creando tablas con pandas
         tabla = pd.concat([tabla, pd.DataFrame({
             "Iteración": [iteraciones],
             "Xn": [round(xn, 6)],
@@ -31,8 +32,8 @@ def metodoBiseccion(funcion, xn, xp, objetivo):
             "f(Xe)": [round(fx_valor, 6)],
             "Prueba de convergencia": [round(pruebaConvergencia, 6)]
         })], ignore_index=True)
-
-        if abs(xe - objetivo) <= 1e-6 or funcion(xe) == 0 or pruebaConvergencia <= 1e-6:
+        #Limite de la iteraccion
+        if abs(xe - objetivo) <= 1e-6 or funcion(xe) == 0 or pruebaConvergencia == 0:
             break
 
         if funcion(xe) * funcion(xn) < 0:
